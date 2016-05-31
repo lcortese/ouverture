@@ -4,7 +4,7 @@ class Controller {
 
     private static $Layout;
 
-    protected static function get_layout () {
+    protected static function Layout () {
 
       if (!self::$Layout) {
 
@@ -35,7 +35,7 @@ class Controller {
 
         http_response_code(404);
 
-        echo self::get_layout()->get(array(
+        echo self::Layout()->get(array(
             'title' => 'Not Found',
             'content' => get_view('not_found.php')
         ));
@@ -43,3 +43,4 @@ class Controller {
 }
 
 include dirname(__FILE__).'/_home.php';
+include dirname(__FILE__).'/_ajax.php';

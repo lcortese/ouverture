@@ -4,8 +4,8 @@ class Home_Controller extends Controller {
 
     public static function index () {
 
-        echo self::get_layout()->get(array(
-        	'title' => 'Home',
+        echo self::Layout()->get(array(
+            'title' => 'Home',
             'content' => get_view('home.php')
         ));
     }
