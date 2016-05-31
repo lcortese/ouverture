@@ -7,6 +7,7 @@ class Sections_model extends Model {
         $rows = Array();
         $result = self::db()->query('
             SELECT * FROM sections
+            ORDER BY weight ASC
         ');
 
         while($row = $result->fetch_object()) {

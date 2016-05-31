@@ -40,3 +40,16 @@ a {
 a:hover{
     text-decoration:underline
 }
+
+
+#test .content {
+    width: 300px;
+    height: 300px;
+    overflow-y: auto;
+    margin: 2em auto;
+}
+
+#test nav {
+    text-align: center;
+    margin: 2em auto;
+}

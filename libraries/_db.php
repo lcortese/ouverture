@@ -2,7 +2,7 @@
 
 /*
  * Just wrap 'mysqli'
- **/
+ */
 class Db extends mysqli {
 
     public function Db ($host, $user, $pass, $name) {

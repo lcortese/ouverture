@@ -13,6 +13,9 @@
     <link href="styles/root.css" rel="stylesheet">
     <link href="styles/site.css" rel="stylesheet">
 
+    <script type="text/javascript" src="scripts/vendor/jquery.js"></script>
+    <script type="text/javascript" src="scripts/test.js"></script>
+
 </head>
 <body>
 
