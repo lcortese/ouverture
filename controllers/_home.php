@@ -2,11 +2,10 @@
 
 class Home_Controller extends Controller {
 
-	public function Home () {
-	}
+    public static function index () {
 
-	public static function index () {
-
-		echo 'Welcome';
-	}
+        echo self::get_layout()->get(array(
+            'content' => get_view('home.php')
+        ));
+    }
 }

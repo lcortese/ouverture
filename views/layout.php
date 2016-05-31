@@ -5,22 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <base href="/">
+    <base href="<?php echo $base ?>">
 
-    <title>Test - <?php echo $title ?></title>
+    <title>Test</title>
 
+    <link href="styles/reset.css" rel="stylesheet">
     <link href="styles/root.css" rel="stylesheet">
+    <link href="styles/site.css" rel="stylesheet">
 
 </head>
 <body>
 
-    <?php echo $header ?>
-
-    <?php echo $section ?>
-
-    <?php echo $footer ?>
-
-</div>
+    <?php echo $content ?>
 
 </body>
 </html>
