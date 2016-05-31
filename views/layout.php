@@ -7,7 +7,7 @@
 
     <base href="<?php echo $base ?>">
 
-    <title>Test</title>
+    <title><?php echo isset($title) ? $title : '' ?></title>
 
     <link href="styles/reset.css" rel="stylesheet">
     <link href="styles/root.css" rel="stylesheet">
@@ -16,7 +16,17 @@
 </head>
 <body>
 
-    <?php echo $content ?>
+    <section class="site container">
+        <?php echo $content ?>
+    </section>
+
+    <footer class="site container">
+        <p>
+            Test for: <a href="http://ouvertureconsulting.com/" target="_blank">ouvertureconsulting.com</a><br>
+            <br>Candidate: <a href="mailto:leandrocortese@gmail.com">Leandro Cortese</a>
+            <br>Site: <a href="http://www.leandrocortese.net" target="_blank">leandrocortese.net</a>
+        </p>
+    </footer>
 
 </body>
 </html>

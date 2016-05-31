@@ -1,4 +1,4 @@
-<section>
+<div class="">
     <h1>Content not found.</h1>
-    <p>Please go back to <a href="/">home page</a>.</p>
+    <p>Please go back to <a href="./">home page</a>.</p>
 </section>
