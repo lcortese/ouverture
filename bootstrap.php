@@ -17,7 +17,7 @@ Router::map('GET', 'ajax/sections', function() {
     Ajax_Controller::sections();
 });
 
-Router::map('GET', 'ajax/section/[:id]', function($id) {
+Router::map('GET', 'ajax/section/[i:id]', function($id) {
     Ajax_Controller::section($id);
 });
 
