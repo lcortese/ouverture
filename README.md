@@ -2,12 +2,10 @@ Ouverture Technical Test
 ========================
 This is a fast technical test to evaluate the skill on  MySql, PHP, HTML, JavaScript.
 
-----------
-
 Candidate
 ---------
 **Name**: Leandro Cortese<br>
-**Email**: leandrocortese@mail.com
+**Email**: leandrocortese@gmail.com
 
 Project Requirements
 -
@@ -32,7 +30,6 @@ Developer Notes
 ---------------
 The points required on the test could be a bit confused. I decided implement a mix of good practices. However there are much methods to resolve the same exercise.
 I preferred do a more solid PHP structure and a bit use of javascript only to perform the required points.
-This test could be perfomed with more front specific frontend frameworks, as Angular.
-But for matter of time, I decided create a simple js file because the requeriments for js test were not complex.
+This test could be perfomed with a specific frontend framework, as Angular. But for matter of time, I decided create a simple js file because the requirements for js test were not complex.
 
 Please let me know if some feature is out of the project.
