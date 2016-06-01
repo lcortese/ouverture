@@ -1,67 +1,69 @@
-;'use strict';
+(function ($, Modal) {
 
-(function($){
+    'use strict';
 
-    var sectionModel = function(id){
+    var sectionModel = (function () {
 
-        var url = 'ajax/section/';
-        var api = {};
-        var cache = {};
+        var url = 'ajax/section/',
+            api = {},
+            cache = {};
 
         api.get = function (id) {
 
-            if (cache[id]) {
+            cache[id] = cache[id] || {};
 
-                return $.when(cache[id]);
+            if (cache[id].data) {
+                return $.when(cache[id].data);
             }
 
-            return $.get({
+            cache[id].promise = cache[id].promise || $.get({
                 url: url + id,
                 dataType: 'json'
-            }).done(function(r){
+            }).then(function (r) {
 
-                cache[id] = r;
+                cache[id] = {
+                    data: r
+                };
                 return r;
+
+            }, function (err) {
+                console.error(err);
             });
+
+            return cache[id].promise;
         };
 
         return api;
-    }();
+    }());
 
-    var testModule = function () {
 
-        var ui = {};
-        var e = {};
+    var testModule = (function () {
 
-        function initUi () {
-            ui.wrapper = $('#test-module')
+        var ui = {},
+            e = {};
+
+        function initUi() {
+
+            ui.wrapper = $('#test-module');
             ui.buttons = ui.wrapper.find('nav button');
             ui.content = ui.wrapper.find('.content');
+
+            ui.buttons.last().data('isLast', true);
         }
 
-        function initEvents () {
+        function initEvents() {
 
-            ui.buttons.on('click', function() {
+            ui.buttons.on('click', function () {
+
                 e.load_content_handler(this.value);
+
+                if ($(this).data('isLast')) {
+                    e.open_modal_handler(this.value);
+                }
             });
         }
 
-        e.load_content_handler = function (id) {
-
-            isLoading(true);
-
-            sectionModel.get(id).then(function(result){
-
-                ui.content.html(result.content);
-
-            }).always(function(){
-
-                isLoading(false);
-            });
-        };
-
-
-        function isLoading (status) {
+        function isLoading(status) {
 
             ui.buttons.prop('disabled', status);
             ui.wrapper.removeClass('is-loading');
@@ -71,12 +73,39 @@
             }
         }
 
-        $(document).ready(function(){
+
+        e.load_content_handler = function (id) {
+
+            isLoading(true);
+
+            return sectionModel.get(id).then(function (result) {
+
+                ui.content.html(result.content);
+                return result;
+
+            }).always(function () {
+
+                isLoading(false);
+            });
+        };
+
+        e.open_modal_handler = function (id) {
+
+            return sectionModel.get(id).then(function (result) {
+
+                Modal({
+                    title: result.title,
+                    content: result.content
+                }).show();
+            });
+        };
+
+
+        $(document).ready(function () {
             initUi();
             initEvents();
         });
 
-    }();
+    }());
 
-
-})(jQuery);
+}(jQuery, ModalService));
