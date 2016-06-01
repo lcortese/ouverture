@@ -12,7 +12,13 @@ class Section_model extends Model {
             WHERE id = '.$id
         );
 
-        return $result->fetch_object();
+        $r = $result->fetch_object();
+
+        if (!$r) {
+        	return (object)array();
+        }
+
+        return $r;
     }
 }
 

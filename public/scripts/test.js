@@ -1,63 +1,82 @@
-;(function($){
+;'use strict';
 
-    var sections = (function(){
+(function($){
 
-        var url = 'ajax/sections';
+    var sectionModel = function(id){
+
+        var url = 'ajax/section/';
         var api = {};
+        var cache = {};
 
-        api.get = function () {
+        api.get = function (id) {
+
+            if (cache[id]) {
+
+                return $.when(cache[id]);
+            }
 
             return $.get({
-                url: url,
+                url: url + id,
                 dataType: 'json'
+            }).done(function(r){
+
+                cache[id] = r;
+                return r;
             });
         };
 
         return api;
-    })();
+    }();
 
-    var testController = function(markup){
+    var testModule = function () {
 
-        var api = {};
-        var nav = markup.find('nav');
-        var content = markup.find('.content');
+        var ui = {};
+        var e = {};
 
-        function loadSections () {
+        function initUi () {
+            ui.wrapper = $('#test-module')
+            ui.buttons = ui.wrapper.find('nav button');
+            ui.content = ui.wrapper.find('.content');
+        }
 
-            markup.addClass('loading');
+        function initEvents () {
 
-            sections.get().done(function(results){
-
-                nav.find('button').off('click');
-                nav.html('');
-
-                $.each(results, function(key, value){
-
-                    var button = $('<button type="button">'+value.title+'</button>');
-
-                    button.on('click', function(){
-                        content.html(value.content);
-                    });
-
-                    nav.append(button);
-                });
-
-
-            })
-            .always(function(){
-                markup.removeClass('loading');
+            ui.buttons.on('click', function() {
+                e.load_content_handler(this.value);
             });
         }
 
-        loadSections();
+        e.load_content_handler = function (id) {
 
-    };
+            isLoading(true);
+
+            sectionModel.get(id).then(function(result){
+
+                ui.content.html(result.content);
+
+            }).always(function(){
+
+                isLoading(false);
+            });
+        };
 
 
-    $(document).ready(function(){
+        function isLoading (status) {
 
-        testController($('#test'));
-    });
+            ui.buttons.prop('disabled', status);
+            ui.wrapper.removeClass('is-loading');
+
+            if (status) {
+                ui.wrapper.addClass('is-loading');
+            }
+        }
+
+        $(document).ready(function(){
+            initUi();
+            initEvents();
+        });
+
+    }();
 
 
-})(jQuery)
+})(jQuery);
