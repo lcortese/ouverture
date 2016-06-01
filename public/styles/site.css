@@ -42,6 +42,11 @@ a:hover{
 }
 
 
+#test-module h1 {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
 #test-module .content {
     width: 300px;
     height: 300px;

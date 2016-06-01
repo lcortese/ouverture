@@ -3,7 +3,9 @@
 class Ajax_Controller extends Controller {
 
     public static function sections () {
-        echo json_encode(Sections_model::get());
+        echo json_encode(array(
+            'results' => Sections_model::get()
+        ));
     }
 
     public static function section ($id) {
@@ -14,6 +16,8 @@ class Ajax_Controller extends Controller {
     		http_response_code(404);
     	}
 
-        echo json_encode($result);
+        echo json_encode(array(
+            'data' => $result
+        ));
     }
 }

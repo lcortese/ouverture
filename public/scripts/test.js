@@ -21,10 +21,7 @@
                 dataType: 'json'
             }).then(function (r) {
 
-                cache[id] = {
-                    data: r
-                };
-                return r;
+                return cache[id].data = r.data;
 
             }, function (err) {
                 console.error(err);

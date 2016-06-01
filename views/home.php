@@ -1,5 +1,7 @@
 <div id="test-module">
+	<h1>Test Module</h1>
     <div class="content">
+    	<p>Click a button to verify functionality.</p>
     </div>
     <nav>
     	<?php foreach($sections as $section) : ?>
