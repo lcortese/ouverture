@@ -69,15 +69,16 @@ input[type=reset] {
 .modal-window {
 
 	z-index:950;
-	max-height: 90%;
-	max-width: 60%;
-	overflow-y: auto;
 	position: fixed;
 
-	min-width:480px;
-	display:none;
+	max-height: 90%;
+	min-width: 480px;
+	max-width: 720px;
+
+	overflow-y: auto;
 
 	background: #fff;
+	display:none;
 }
 
 .modal-window .modal-header:empty {
