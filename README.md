@@ -11,9 +11,9 @@ Candidate
 
 Project Requirements
 -
-**Apache**: >= 2.4.x
-**PHP**: >= 5.3
-**MySql**: >= 5.6.x
+**Apache**: >= 2.4.x<br>
+**PHP**: >= 5.3<br>
+**MySql**: >= 5.6.x<br>
 
 Deploy
 ------
