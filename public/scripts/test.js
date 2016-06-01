@@ -37,75 +37,72 @@
     }());
 
 
-    var testModule = (function () {
+    var ui = {},
+        e = {};
 
-        var ui = {},
-            e = {};
+    function initUi() {
 
-        function initUi() {
+        ui.wrapper = $('#test-module');
+        ui.buttons = ui.wrapper.find('nav button');
+        ui.content = ui.wrapper.find('.content');
 
-            ui.wrapper = $('#test-module');
-            ui.buttons = ui.wrapper.find('nav button');
-            ui.content = ui.wrapper.find('.content');
+        ui.buttons.last().data('isLast', true);
+    }
 
-            ui.buttons.last().data('isLast', true);
-        }
+    function initEvents() {
 
-        function initEvents() {
+        ui.buttons.on('click', function () {
 
-            ui.buttons.on('click', function () {
+            e.load_content_handler(this.value);
 
-                e.load_content_handler(this.value);
-
-                if ($(this).data('isLast')) {
-                    e.open_modal_handler(this.value);
-                }
-            });
-        }
-
-        function isLoading(status) {
-
-            ui.buttons.prop('disabled', status);
-            ui.wrapper.removeClass('is-loading');
-
-            if (status) {
-                ui.wrapper.addClass('is-loading');
+            if ($(this).data('isLast')) {
+                e.open_modal_handler(this.value);
             }
-        }
-
-
-        e.load_content_handler = function (id) {
-
-            isLoading(true);
-
-            return sectionModel.get(id).then(function (result) {
-
-                ui.content.html(result.content);
-                return result;
-
-            }).always(function () {
-
-                isLoading(false);
-            });
-        };
-
-        e.open_modal_handler = function (id) {
-
-            return sectionModel.get(id).then(function (result) {
-
-                Modal({
-                    title: result.title,
-                    content: result.content
-                }).show();
-            });
-        };
-
-
-        $(document).ready(function () {
-            initUi();
-            initEvents();
         });
+    }
 
-    }());
+    function isLoading(status) {
+
+        ui.buttons.prop('disabled', status);
+        ui.wrapper.removeClass('is-loading');
+
+        if (status) {
+            ui.wrapper.addClass('is-loading');
+        }
+    }
+
+
+    e.load_content_handler = function (id) {
+
+        isLoading(true);
+
+        return sectionModel.get(id).then(function (result) {
+
+            ui.content.html(result.content);
+            return result;
+
+        }).always(function () {
+
+            isLoading(false);
+        });
+    };
+
+    e.open_modal_handler = function (id) {
+
+        return sectionModel.get(id).then(function (result) {
+
+            Modal({
+                title: result.title,
+                content: result.content
+            }).show();
+        });
+    };
+
+
+    $(document).ready(function () {
+        initUi();
+        initEvents();
+    });
+
 
 }(jQuery, ModalService));
