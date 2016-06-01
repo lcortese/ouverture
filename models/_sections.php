@@ -6,7 +6,7 @@ class Sections_model extends Model {
 
         $rows = Array();
         $result = self::db()->query('
-            SELECT * FROM sections
+            SELECT id, title FROM sections
             ORDER BY weight ASC
         ');
 

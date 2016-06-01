@@ -17,5 +17,6 @@ class Model {
 }
 
 include dirname(__FILE__).'/_sections.php';
+include dirname(__FILE__).'/_section.php';
 
 ?>
